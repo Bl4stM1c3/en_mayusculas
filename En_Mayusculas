@@ -1,0 +1,34 @@
+#Posible solucion al ejercicio 17 de https://retosdeprogramacion.com/ejercicios/
+#Crea una función que reciba un String de cualquier tipo y se encargue de
+#poner en mayúscula la primera letra de cada palabra.
+# - No se pueden utilizar operaciones del lenguaje que
+#   lo resuelvan directamente.
+
+
+def en_mayuscula(texto):
+    #Declaramos las variables necesarias
+    texto_modificado = ""
+    palabra = ""
+    palabras = []
+    
+    #Dividimos el texto en palabras sin recurrir al metodo .split()
+    for c in texto:
+        if c != " ":
+            palabra += c
+        else:
+            if palabra:
+                palabras.append(palabra)
+                palabra = ""
+    if palabra:
+        palabras.append(palabra)
+    
+    #Transformamos las primeras letras en Mayusculas
+    for palabra in palabras:
+        if palabra[0].isalpha() and 97 <= ord(palabra[0]) <= 122:            
+          palabra = chr(ord(palabra[0]) - 32) + palabra[1:]
+          texto_modificado += palabra + " "
+        elif palabra[0].isalpha():
+          texto_modificado += palabra + " "
+          
+    return texto_modificado.strip()
+    
